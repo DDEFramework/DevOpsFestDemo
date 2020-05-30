@@ -69,11 +69,53 @@ spec:
               name: react-app
             - mountPath: /app/node_modules
               name: node-modules
+          env:
+            - name: CHOKIDAR_USEPOLLING
+              value: "true"
       volumes:
         - name: react-app
           hostPath:
-              path: /home/vagrant/react-app
+              path: /home/vagrant/DevOpsFestDemo/react-app
               type: Directory
         - name: node-modules
           emptyDir: {}
               
+
+# apiVersion: apps/v1
+# kind: DaemonSet
+# metadata:
+#   name: flask-dev
+#   namespace: default
+#   labels:
+#     k8s-app: dev-env1
+# spec:
+#   selector:
+#     matchLabels:
+#       name: flask-dev
+#   template:
+#     metadata:
+#       labels:
+#         name: flask-dev
+#     spec:
+#       nodeSelector:
+#         dde.role: DevVM
+#       containers:
+#         - name: flask-dev
+#           image: docker.io/pogorelov/demo-flask-app:dev
+#           ports:
+#           - name: flask-dev
+#             containerPort: 3000
+#             hostPort: 3000
+#           volumeMounts:
+#             - mountPath: /usr/src/app
+#               name: flask-app
+#           env:
+#             - name: FLASK_APP
+#               value: "app.py"
+#             - name: FLASK_DEBUG
+#               value: "1"
+#       volumes:
+#         - name: flask-app
+#           hostPath:
+#               path: /home/vagrant/DevOpsFestDemo/flask-app
+#               type: Directory
