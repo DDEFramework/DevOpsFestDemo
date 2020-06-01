@@ -16,7 +16,6 @@ spec:
         name: flask-dev
     spec:
       nodeSelector:
-        # dde.role: devEnv-front
         dde.role: DevVM
       containers:
         - name: flask-dev
@@ -43,7 +42,6 @@ spec:
       volumes:
         - name: flask-app
           hostPath:
-              # path: /mnt/c/projects/DevOpsFestDemo/flask-app
-              path: /home/vagrant/DevOpsFestDemo/flask-app
+              path: /home/pss/DevOpsFest/DevOpsFestDemo/flask-app
               type: Directory
 
