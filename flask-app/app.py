@@ -1,4 +1,5 @@
 from flask import Flask
+import json
 import os
 from minio import Minio
 from minio.error import ResponseError
@@ -7,7 +8,7 @@ from minio.error import ResponseError
 minioClient = Minio(f'{os.environ.get("MINIO_URL")}:9000',
                   access_key=os.environ.get('MINIO_ACCES_KEY'),
                   secret_key=os.environ.get('MINIO_SECRET_KEY'),
-                  secure=True)
+                  secure=False)
 
 
 app = Flask(__name__)
@@ -28,4 +29,5 @@ def minio_list_buckets():
 
     for bucket in buckets:
         buckets_info.append(f'{bucket.name}, {bucket.creation_date}')
-    return buckets_info
+    return json.dumps(buckets_info, indent=4)
+    
