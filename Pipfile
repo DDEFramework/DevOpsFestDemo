@@ -4,10 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
 
 [packages]
 cookiecutter = "*"
 flask = "*"
+minio = "*"
 
 [requires]
 python_version = "3.7"
