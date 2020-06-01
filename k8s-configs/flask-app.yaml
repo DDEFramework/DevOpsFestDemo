@@ -43,6 +43,7 @@ spec:
       volumes:
         - name: flask-app
           hostPath:
-              path: /mnt/c/projects/DevOpsFestDemo/flask-app
+              # path: /mnt/c/projects/DevOpsFestDemo/flask-app
+              path: /home/vagrant/DevOpsFestDemo/flask-app
               type: Directory
 

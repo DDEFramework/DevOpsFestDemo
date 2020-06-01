@@ -4,7 +4,7 @@ from minio import Minio
 from minio.error import ResponseError
 
 
-minioClient = Minio('minio.default.svc.cluster.local',
+minioClient = Minio(f'{os.environ.get("MINIO_URL")}:9000',
                   access_key=os.environ.get('MINIO_ACCES_KEY'),
                   secret_key=os.environ.get('MINIO_SECRET_KEY'),
                   secure=True)
@@ -13,8 +13,12 @@ minioClient = Minio('minio.default.svc.cluster.local',
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def index():
+    return 'Index Page'
+
+@app.route('/hello')
+def hello():
+    return 'Hello, World'
 
 @app.route('/minio/list-buckets')
 def minio_list_buckets():
