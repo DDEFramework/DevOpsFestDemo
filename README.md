@@ -61,6 +61,16 @@ Endpoint = <external server IP>:51820
 
 `sudo wg-quick up wg0`
 
+if as result you have this last line
+
+`/etc/resolvconf/update.d/libc: Warning: /etc/resolv.conf is not a symbolic link to /run/resolvconf/resolv.conf`
+
+than do
+
+`sudo dpkg-reconfigure resolvconf`
+
+and you can add this as a service
+
 `sudo systemctl enable wg-quick@wg0.service`
 
 
